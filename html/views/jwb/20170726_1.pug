@@ -1,0 +1,54 @@
+//Created by kimilsik on 7/18/17.
+//
+    getElementById -> 하나만 조회. id는 유일무이해야함.
+    가장 성능이 좋아서 이것을 쓸 수 있다면 이것을 써야.
+
+    document.querySelector -> css 의 선택자 리턴.
+
+
+
+doctype html
+html
+    head
+        meta(charset="utf-8")
+    body
+        ul
+            li(id="atv") html
+            li(class="active") css
+            li(class="active") javascript
+        ol
+            li html
+            li(class="active2") css
+            li javascript
+
+
+        script.
+            var ul = document.getElementsByTagName('ul')[0];
+            var lis = ul.getElementsByTagName('li');
+            for (var i = 0; i < lis.length; ++i)
+                lis[i].style.color = 'red';
+
+            var lis2 = document.getElementsByClassName('active');
+            for (var i = 0; i < lis2.length; ++i)
+                //lis2[i].style.color =
+                lis2[i].style.background = 'green';
+
+            var li = document.getElementById('atv');
+            li.style.color = 'blue';
+
+            var li = document.querySelector('li');
+            // querySelectorAll -> 모든 것을 유사배열에 담아 리턴.
+            li.style.color = 'green'; // ul 아래 html만 리턴.
+            var li = document.querySelector('.active2');
+            li.style.color = 'blue';
+
+            var lis = document.querySelectorAll('li');
+            for (var name in lis) {
+            lis[name].background.color = 'red';
+            }
+//            var lis = document.getElementsByTagName('li');
+//            // lis 는 정확하게는 배열이 아니지만 배열과 유사하게 작동.
+//
+//            for (var i = 0; i < lis.length; ++i) {
+//                lis[i].style.color = "red";
+//            }

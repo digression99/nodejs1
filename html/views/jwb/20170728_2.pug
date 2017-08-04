@@ -1,0 +1,59 @@
+//
+    lesson 55 - node 변경 api
+
+doctype html
+html
+    head
+        meta(charset="utf-8")
+    body
+        ul(id="target")
+            li html
+            li css
+            li(id="target2") removeme!
+            li(id="target3") replace me !
+
+        p
+            input(type="button" onclick="callAppendChild();" value="appendChild()")
+        p
+            input(type="button" onclick="callInsertBefore();" value="callInsertBefore()")
+        p
+            input(type="button" onclick="callRemoveChild();" value="removeChild()")
+        p
+            input(type="button" onclick="callReplaceChild();" value="replaceChild()")
+
+        script(src="/jwb/jquery-3.2.1.js")
+
+        script.
+            function callAppendChild() {
+                var target = document.getElementById('target');
+                var li = document.createElement('li');
+                var text = document.createTextNode('javascript');
+                // li 는 현재 비어있는 상태. textNode를 만들어서 li에 넣는다.
+                // 그리고 li 엘리먼트를 target에 결합시킨다.
+                li.appendChild(text);
+                target.appendChild(li);
+            }
+
+            function callInsertBefore() {
+                var target = document.getElementById('target');
+                var li = document.createElement('li');
+                var text = document.createTextNode('jQuery');
+                li.appendChild(text);
+                target.insertBefore(li, target.firstChild);
+                // target.insertBefore 를 사용하면 원하는 위치에 삽입할 수 있다
+            }
+
+            function callRemoveChild() {
+                var tgt = document.getElementById('target2');
+                tgt.parentNode.removeChild(tgt);
+            }
+
+            function callReplaceChild() {
+                var a = document.createElement('a');
+                a.setAttribute('href', 'http://opentutorials.org/module/904/6701');
+                a.appendChild(document.createTextNode('web browser javascript'));
+                // a 의 하위 element로  textElement를 a엘레먼트의 자식으로 추가.
+
+                var tgt = document.getElementById('target3');
+                tgt.replaceChild(a, tgt.firstChild);
+            }

@@ -1,0 +1,16 @@
+//Created by kimilsik on 7/11/17.
+doctype html
+html
+    head
+    body
+        h1 LOGIN
+        form(action='/shoppingcart/login', method='post')
+            p
+                input(type='text', name='username', placeholder='username')
+            p
+                input(type='password', name='password', placeholder='password')
+            p
+                input(type='submit')
+        a(href='/shoppingcart/auth/facebook') facebook
+        p
+            a(href='/shoppingcart') MAIN

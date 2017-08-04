@@ -1,0 +1,26 @@
+//
+   Created by kimilsik on 6/14/17.
+doctype html
+html
+    head
+        meta(charset='utf-8')
+    body
+        h1
+            a(href='/topic') Server side javascript
+        ul
+            each t in topics
+                li
+                    a(href='/topic/' + t.id)=t.title
+        article
+            //- rid = encodeURIComponent(top['@rid']);
+            form(action='/topic/'+ top.id +'/edit', method='post')
+                p
+                    input(type='text' name='title' placeholder='title' value=top.title)
+                p
+                    textarea(name='description' placeholder='description')
+                        =top.description
+                    // 태그의 열린 부분과 닫힌 부분 사이의 값을 value로 인식하기 때문에 이렇게 써야 한다
+                p
+                    input(type='text' name='author' placeholder='author' value=top.author)
+                p
+                    input(type='submit')

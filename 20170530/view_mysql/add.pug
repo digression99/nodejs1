@@ -1,0 +1,33 @@
+//
+   Created by kimilsik on 6/14/17.
+doctype html
+html
+    head
+        meta(charset='utf-8')
+    body
+        h1
+            a(href='/topic') Server side javascript
+        ul
+            each t in topics
+                li
+                    // shift + tab -> 후진
+                    // @rid 는 여러 문제가 생길수도. 배열의 데이터를 얻는 것처럼.
+
+
+                    // # 은 url에 넣으면 문제가 생김
+                    // rid 는 javascript 코드 상에서의 변수이지만
+                    // 그대로 pug에서 쓰일 수 있다.
+                    //    굉장히 신기한 것들..
+                    //- rid = encodeURIComponent(t['@rid']);
+                    //a(href='/topic/'+topic['@rid'])=topic.title
+                    a(href='/topic/' + t.id)=t.title
+                    //a(href='/topic/'+topic)= topic
+        form(action='/topic/add', method='post')
+            p
+                input(type='text' name='title' placeholder='title')
+            p
+                textarea(name='description' placeholder='description')
+            p
+                input(type='text' name='author' placeholder='author')
+            p
+                input(type='submit')

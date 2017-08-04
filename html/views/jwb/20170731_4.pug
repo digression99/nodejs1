@@ -1,0 +1,49 @@
+//
+    lesson 76 - form event
+
+    change event -> 폼에서 값을 입력하고 빠져나오는 순간에 change event 가 나온다.
+
+    blur, focus
+    -> 어떤 텍스트를 누르면 focus, 나오면 blur상태.
+
+    이 폼 이벤트를 이용하면 사용자가 입력한 것을 저장할 수도 있다.
+
+
+
+doctype html
+html
+    head
+        meta(charset="utf-8")
+    body
+        form(id="target" action="/jwb/result.html")
+            label(for="name") name
+            input(id="name" type="name")
+            input(type="submit")
+
+        p(id='result')
+        input(id="target2" type="name")
+
+        script(src="/jwb/jquery-3.2.1.js")
+
+        script.
+            var t = document.getElementById('target');
+            t.addEventListener('submit', function(event) {
+                if (document.getElementById('name').value.length === 0)
+                {
+                    alert('you need to write the field name');
+                    event.preventDefault();
+                }
+
+                console.log(document.getElementById('name').value.length);
+            });
+            var t2 = document.getElementById('target2');
+            t2.addEventListener('change', function(event) {
+                document.getElementById('result').innerHTML = event.target.value;
+                // innerhtml -> p태그 안의 html
+            });
+            //t2.addEventListener('blur', function(event) {
+            //    alert('blur');
+            //});
+//            t2.addEventListener('focus', function(event) {
+//                alert('focus');
+//            });

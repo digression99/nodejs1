@@ -1,0 +1,76 @@
+//
+    lesson 60 - document 객체
+
+    document -> dom 에서 정의되어 있는 규격
+    우리가 사용하는 document 객체는 사실 HTMLDocument이다.
+    HTMLDocument 는 문서 전체를 대표하는 객체, 노드이다.
+
+    lesson 61 - text 객체
+
+    node 를 상속받는 객체.
+
+    p
+        opentutorials
+    여기에서 opentutorials는 text 객체이다.
+
+    lesson 62 - 값 api
+
+    lesson 63 - 조작 api
+
+    text node 가 상속받은 CharacterData객체는 문자를 제어할 수 있는 다양한 api를 제공한다.
+    -> appendData(),deleteData(), insertData(), ...
+
+
+
+doctype html
+html
+    head
+        meta(charset="utf-8")
+    body
+        p(id = "target1")
+            span hello world
+        p(id="target2")
+            span hello world
+
+        li(id="target3") html
+
+
+        script(src="/jwb/jquery-3.2.1.js")
+
+        script.
+            // 그냥 document만 써도 window가 앞에 붙는 것과 같다.
+
+            console.log(window.document);
+
+            console.log(document.childNodes[0]); // comment
+            console.log(document.childNodes[1]); // doctype
+            console.log(document.childNodes[2]); // html 태그 안의 내용.
+
+            //console.log(window.childNodes);
+            //console.log(window.childNodes[1]);
+            var li = document.createElement('li'); // 태그를 생성할 수 있다.
+
+            // 문서 정보 api
+
+            //title, url 등..
+            console.log(document.title);
+
+            ///////
+
+            var t1 = document.getElementById('target1').firstChild; // span
+            var t2 = document.getElementById('target2').firstChild;
+            // 이거는 공백인 text 객체를 받아오려고 한 것이나, pug는 공백 없이 html을 만듦으로 nextSibling이 없다.
+
+            console.log(t1.firstChild.nodeValue);// span의 첫번째 자식은 text 객체 (hello world)
+
+            try {
+                console.log(t2.firstChild.nodeValue);
+            } catch (e) { console.log(e);
+            }
+            //console.log(t2.nextSibling.firstChild.nodeValue);
+
+            var t = document.getElementById('target3').firstChild;
+            console.log(t.nodeValue); // html
+            console.log(t.data); // html
+            // t 는 텍스트 객체이므로 nodeValue나 data
+            // 둘다 마찬가지로 정보를 얻어올 수 있다.

@@ -1,0 +1,24 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+    body
+        ul
+            li html
+            li css
+            li(id = "active") javascript
+        script.
+            console.group('before');
+            var lis = document.getElementsByTagName('li');
+            for (var i = 0; i < lis.length; ++i)
+                console.log(lis[i]);
+            console.groupEnd();
+
+            for (var i = 0; i < 100000000; ++i)
+                console.log();
+
+            console.log('after');
+            lis[1].parentNode.removeChild(lis[1]); // 두번째 element, 즉 css 를 삭제해버림.
+            for (var i = 0; i < lis.length; ++i)
+                console.log(lis[i]);
+            console.groupEnd();

@@ -1,0 +1,49 @@
+//
+    lesson 75 - 기본 동작의 취소
+    웹브라우저의 구성요소들은 각각 기본적 동작 방법을 가지고 있다.
+    -> 텍스트 필드에 포커스를 주고 키보드를 입력하면 텍스트가 입력된다
+    -> a태그를 클릭하면 href속성의 url로 이동한다.
+    이런 기본적 동작들을 기본 이벤트라고 하는데 사용자가 만든 이벤트를 이용하여 기본 동작을 취소할 수 있다.
+
+doctype html
+html
+    head
+        meta(charset="utf-8")
+    body
+        p
+            label prevent event on
+            input(type="checkbox" id="prevent" name="eventprevent" value="on")
+        p
+            a(href="http://opentutorials.org" onclick="if(document.getElementById('prevent').checked) return false;") opentutorials
+            // onclick 이 false를 리턴하면 기본 동작을 취소한다.
+        p
+            form(action="http://opentutorials.org" onsubmit="if(document.getElementById('prevent').checked) return false;")
+                input(type="submit")
+            // onsubmit 이 false를 리턴하면 기본 동작을 취소한다.
+
+        script(src="/jwb/jquery-3.2.1.js")
+
+        script.
+
+            // add event listener 방식.
+            document.querySelector('a').addEventListener('click', function(event) {
+                if(document.getElementById('prevent').checked)
+                    event.preventDefault();
+                    // ie 8 이하는 event.returnValue = false;
+            });
+
+            // property 방식.
+//            document.querySelector('a').onclick = function(event) {
+//                if(document.getElementById('prevent').checked)
+//                    return false;
+//            }
+            //document.querySelector('submit').onsubmit = ...
+
+
+
+
+
+
+
+
+

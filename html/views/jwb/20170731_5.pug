@@ -1,0 +1,31 @@
+//
+    문서로드 이벤트
+
+    앞쪽 스크립트에서 뒤에 있는 아이디를 참조한다면 자바스크립트가 먼저 실행될 것이므로
+    뒤의 아이디를 찾을 수 없다.
+
+    -> script 는 뒤쪽에 두어야.
+    -> or window.onload() 이벤트를 사용.
+    -> addeventlistener 로 사용하는 게 더 좋다.
+
+
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        script.
+            //window.addEventListener('load', function() {
+            window.addEventListener('DOMContentLoaded', function() {
+                var t = document.getElementById('target');
+                console.log(t);
+            });
+            // load 이벤트는 모든 리소스가 다운될 때 까지 지연된다.
+            // domcontentloaded를 사용.
+
+    body
+        p(id="target") hello
+
+        script(src="/jwb/jquery-3.2.1.js")
+
+        script.
+

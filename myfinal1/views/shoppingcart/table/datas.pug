@@ -1,0 +1,25 @@
+extends main.pug
+block datas
+    style
+        include teststyle.css
+    p
+        h2= data.title
+        = data.description
+        h2= "by " + data.displayName
+    p
+        h3= data.date_year + "." + data.date_mon + "." + data.date_day + "/" + data.date_hour + ":" + data.date_min + ":" + data.date_sec
+
+    - rid = encodeURIComponent(data['@rid']);
+    p
+        a(href="/shoppingcart/table/" + rid + "/delete") DELETE
+    p
+        a(href="/shoppingcart/table/" + rid + "/edit") EDIT
+
+
+block hdr
+    p
+        h3 fuck fuck hdr
+
+block ftr
+    p
+        h3 fuck fuck ftr

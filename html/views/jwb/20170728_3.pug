@@ -1,0 +1,81 @@
+//
+    jQuery로 노드 추가하기
+
+    before
+    prepend
+    [content]
+    append
+    after
+
+    즉, before, after 는 sibling으로,
+    prepend, append는 child의 sibling으로.
+
+    제거 -> remove, empty
+    remove -> 태그 자체가 없어짐
+    empty -> 태그는 존속하고 태그 안에 있는 내용만 없어짐.
+
+    변경
+    replaceAll -> 제어 대상을 먼저 지정
+    replaceWith -> 제어 대상을 인자로 전달.
+
+    노드 복사 -> clone
+
+    노드 이동 -> append..
+
+
+doctype html
+html
+    head
+        meta(charset="utf-8")
+    body
+        div(class="target" id="target1")
+            | content1
+        div(class="target" id="target2")
+            | content2
+
+        div(id="source") source
+
+        input(type="button" value="remove target 1" id="btn1")
+        input(type="button" value="empty target 2" id="btn2")
+
+        input(type="button" value="replaceAll target 1" id="btn3")
+        input(type="button" value="replaceWith target 2" id="btn4")
+
+        input(type="button" value="clone replaceAll target 2" id="btn5")
+        input(type="button" value="clone replaceWith target 2" id="btn6")
+
+        input(type="button" value="append source to target 1" id="btn7")
+
+
+
+        script(src="/jwb/jquery-3.2.1.js")
+
+        script.
+            $('.target').before('<div>before</div>');
+            $('.target').after('<div>after</div>');
+            $('.target').prepend('<div>prepend</div>');
+            $('.target').append('<div>append</div>');
+
+            // click 일 때 이벤트 추가하기.
+            $('#btn1').click(function() {
+                $('#target1').remove();
+            })
+            $('#btn2').click(function () {
+                $('#target2').empty();
+            })
+            $('#btn3').click(function() {
+                $('<div>replaceAll</div>').replaceAll('#target1');
+            });
+            $('#btn4').click(function() {
+                $('#target2').replaceWith('<div>replaceWith</div>');
+            });
+            $('#btn5').click(function() {
+                $('#source').clone().replaceAll('#target1');
+            });
+            $('#btn6').click(function() {
+                $('#target2').replaceWith($('#source').clone());
+            });
+            $('#btn7').click(function() {
+                $('#target1').append($('#source'));
+                // prepend, before, after 모두 사용 가능.
+            });

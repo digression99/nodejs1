@@ -1,0 +1,61 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+
+        style.
+            #demo {
+                width: 200px;
+                float: left;
+                margin-top: 120px;
+            }
+            #execute {
+                float: left;
+                margin: 0;
+                font-size: 0.9em;
+            }
+            #execute li {
+                list-style : none;
+            }
+            #execute pre {
+                border : 1px solid gray;
+                padding : 10px;
+            }
+    body
+        ul(id="demo")
+            li(class="active") html
+            li(id="active") css
+            li(class="active") javascript
+
+        ul(id="execute")
+            li
+                pre.
+                    var lis = document.getElementsByTagName('li');
+                    for(var i = 0; i < lis.length; ++i) {
+                    lis[i].style.color='red';
+                    }
+
+                pre.
+                    $('li').css('color', 'red')
+                input(type="button" value="execute" onclick="$('li').css('color','red');")
+            li
+                pre.
+                    var lis = document.getElementsByClassName('active');
+                    for (var i = 0; i < lis.length; ++i)
+                    {
+                        lis[i].style.color = 'red';
+                    }
+                pre.
+                    '.active'에서 .은 class란 의미
+                    $('.active').css('color', 'red')
+                input(type="button" value="execute" onclick="$('.active').css('color','red');")
+            li
+                pre.
+                    var li = document.getElementById('active');
+                    li.style.color='red';
+                    li.style.textDecoration='underline';
+                pre.
+                    '$active'에서 $는 id라는 의미
+                    $('$active').css('color', 'red').css('textDecoration', 'underline');
+                input(type="button" value="execute" onclick="$('#active').css('color', 'red').css('textDecoration', 'underline')")
+        script(src="/jwb/jquery-3.2.1.js")

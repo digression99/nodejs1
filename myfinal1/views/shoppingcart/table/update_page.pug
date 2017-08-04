@@ -1,0 +1,13 @@
+//Created by kimilsik on 7/12/17.
+doctype html
+html
+    head
+    body
+        form(action='/shoppingcart/table/' + rid + '/edit', method='post')
+            p
+                input(type='text' name='title' placeholder='title', value=title)
+            p
+                textarea(name='description' placeholder='description')
+                    =cont
+            p
+                input(type='submit')

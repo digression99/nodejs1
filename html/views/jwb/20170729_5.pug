@@ -1,0 +1,20 @@
+//
+    lesson 68 - event
+        -> 사용자가 클릭했을 때, 스크롤했을 때, 필드를 바꾸었을 때... -> event driven programming.
+
+    event handler -> event 발생 시 실행될 코드.
+
+doctype html
+html
+    head
+        meta(charset="utf-8")
+    body
+        input(type="button" onclick="alert(window.location)" value="alert(window.href)")
+        input(type="button" onclick="window.open('bom.html')" value="window.open('bom.html')")
+        input(type="text" onchange="alert(this.value)")
+        // text창에 뭔가 입력하고 focus를 뺏었을 때 or 엔터쳤을 때 onchange가 발동.
+
+
+        script(src="/jwb/jquery-3.2.1.js")
+
+        script.

@@ -1,0 +1,66 @@
+//
+    lesson 63 - 조작 api
+
+        text node 가 상속받은 CharacterData객체는 문자를 제어할 수 있는 다양한 api를 제공한다.
+        -> appendData(),deleteData(), insertData(), ...
+
+
+
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        style.
+            #target {
+                font-size: 77px;
+                font-family: georgia;
+                border-bottom: 1px solid black;
+                padding-bottom: 10px;
+            }
+            p {
+                margin:5px;
+            }
+    body
+        p(id="target") coding everyday
+        p data :
+            input(type="text" id="datasource" value='javascript')
+        p start :
+            input(type='text' id='start' value='5')
+        p end :
+            input(type="text" id="end" value="5")
+        p
+            input(type="button" value="appendData(data)" onclick="callAppendData()")
+            input(type="button" value="deleteData(start, end)" onclick="callDeleteData()")
+            input(type="button" value="insertData(start, data)" onclick="callInsertData()")
+            input(type="button" value="replaceData(start, end, data)" onclick="callReplaceData()")
+            input(type="button" value="substringData(start, end)" onclick="callSubstringData()")
+
+        script(src="/jwb/jquery-3.2.1.js")
+
+        script.
+            var target = document.getElementById('target').firstChild;
+            var data = document.getElementById('datasource');
+            var start = document.getElementById('start');
+            var end = document.getElementById('end');
+
+            function callAppendData() {
+                target.appendData(data.value);
+                // coding everyday 에 javascript가 추가된다.
+                // -> text node의 실제 값을 변경할 수 있다.
+            }
+            function callDeleteData() {
+                target.deleteData(start.value, end.value);
+                // start.value 부터 end.value개 지움.
+                // start.value 는 array의 인덱스.
+            }
+            function callInsertData() {
+                target.insertData(start.value, data.value);
+                // start.value에 javascript 추가한다.
+            }
+            function callReplaceData() {
+                target.replaceData(start.value, end.value, data.value);
+            }
+            function callSubstringData() {
+                alert(target.substringData(start.value, end.value));
+                // start.value 와 end.value사이의 substring은?
+            }

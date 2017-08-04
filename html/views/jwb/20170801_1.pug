@@ -1,0 +1,126 @@
+//
+    lesson 79 - jquery vs non-jquery
+
+    ---- on api
+
+    $().on(events [,selector] [, data], handler(event) { ...
+
+    --- 다중 바인딩
+
+    하나의 이벤트 타입에 대해 여러 개의 이벤트 핸들러를 지정.
+
+
+
+
+
+
+
+doctype html
+html
+    head
+        meta(charset="utf-8")
+    body
+        input(type="button" id="pure" value="pure")
+        input(type="button" id="jquery" value="jQuery")
+
+        ul
+            li
+                a(href="#") html
+            li
+                a(href="#") css
+            li
+                a(href="#") javascript
+
+        input(type = "text" id = "target")
+        p(id="status")
+
+        p
+            input(type="button" id="remove" value="remove")
+
+
+        script(src="/jwb/jquery-3.2.1.js")
+
+        script.
+            var target = document.getElementById('pure');
+            if (target.addEventListener) {
+                target.addEventListener('click', function (event) {
+                    alert('pure');
+                });
+            } else {
+                target.attachEvent('onclick', function (event) {
+                    alert('pure');
+                });
+            }
+
+            // jQuery를 사용했을 때
+            $('#jquery').on('click', function (event) {
+                alert('jQuery');
+            })
+            // on -> event 를 설치하는 함수.
+            // 내부에 크로스 브라우저를 지원한다.
+
+            // on api
+            $('ul').on('click', 'a, li', function(event) {
+                // 저 중간의 'a, li' 는 selector.
+                // 필터링한다.
+                console.log(this.tagName);
+                // 사용자가 css를 클릭하면, 이벤트를 ul에 설치했지만,
+                // a, li를 클릭했을 때 이벤트가 발생한다.
+            });
+            // 만일 윗부분에 스크립트를 넣고 싶다면, 이미 위에 있는 태그, 바디 등에
+            // 추가하면 된다.
+
+            // 다중바인딩.
+            // 방법 1
+            var handler = function (e) {
+                $('#status').html(e.type + Math.random());
+            }
+            //$('#target').on({
+            //    'focus' : handler,
+            //    'blur' : handler
+            //});
+
+            // 방법 3
+            $('#target').on('focus', handler).on('blur', handler);
+
+            // 방법 2
+            //$('#target').on('focus blur', function(e) {
+            //    $('#status').html(e.type);
+            //    // e.type이 status의 하위 엘레먼트로 추가된다.
+            //});
+
+            // event removal
+            //$('#remove').on('click', function(e) {
+            //    $('#target').off('focus');
+            //});
+
+            // off 하면 focus에 있는 모든 이벤트가 삭제된다. 그게 2개든 3개든...
+            // but, 어떤 이벤트를 삭제할지 지정할 수 있다.
+
+            //$('#target').on('focus', function(e) {
+            //    alert(1);
+            //});
+
+            $('#remove').on('click', function (e) {
+                $('#target').off('focus', handler);
+                // handler 를 가지고 있는 이벤트만 삭제된다.
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

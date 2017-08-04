@@ -1,0 +1,85 @@
+//
+    lesson 84 - ajax
+
+    ajax는 서버가 전달해준 데이터를 가지고
+    페이지의 부분적인 리스트를 만든다던가 할 수 있다.
+    특정한 페이지로 이동할 필요 없음.
+    따라서 어떤 정보를 미리 페이지에 포함할 필요가 없음.
+    사용자가 나중에 필요할 때 서버에서 가져갈 수 있도록 한다.
+    ajax -> asynchronous javascript and xml
+    그러나 지금은 json을 더 많이 사용. ajson?...
+
+    get, post 방식 둘다 존재한다.
+
+    -> 비동기 -> 데이터를 불러오는 동안 다른 것을 할 수 있다. (스크롤을 움직인다던가..)
+// jquery 방식.
+    doctype html
+    html
+        head
+            link(rel='stylesheet', href='/stylesheets/style.css')
+            script(src="/jwb/jquery-3.2.1.js")
+        body
+            input#msg(type='text')
+            input#ajax_test(type='button', value='ajax_test')
+            div(id="result")
+            script.
+                $('#ajax_test').click( function() {
+                    $('#result').html('');
+                    $.ajax({
+                        url: 'http://localhost:3002/jwb/ajax1',
+                        dataType: 'json',
+                        type: 'POST',
+                        data: {'msg':$('#msg').val()},
+                        success: function(result) {
+                            if ( result['result'] == true ) {
+                                $('#result').html(result['msg']);
+                            }
+                        }
+                    });
+                })
+
+
+//  pure javascript 방식
+html
+    head
+        meta(charset="utf-8")
+    body
+        p
+            | time :
+            span#time
+        input#execute(type='button', value='execute')
+
+        script.
+            document.querySelector('input').addEventListener('click', function (event) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', '/jwb/ajax1'); // open 후 send해야.
+                xhr.onreadystatechange = function () {
+                    // 상태가 변화될 때 마다 이게 호출.
+                    // 주로 통신이 끝났을 때를 사용.
+                    console.log(xhr);
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        // readyState-> 4 : 모든 통신이 끝났다.
+                        // status -> 200 : OK, 404 :not found
+                        console.log('xhr.responseText : ' + xhr.responseText);
+                        document.querySelector('#time').innerHTML = xhr.responseText;
+                        // 정보가 responseText 안에 있다.
+                    }
+                }
+                xhr.send(); // xhr 객체가 서버와 통신 시작.
+
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,26 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+    body
+        ul
+            li(class="marked") html
+            li css
+            li(id="active") javascript
+                ul
+                    li javascript core
+                    li(class="marked") dom
+                    li(class="marked") bom
+
+        script(src="/jwb/jquery-3.2.1.js")
+
+        script.
+            // 첫 번째 인자에 해당되는 셀렉터를 제어하는 엘레먼트의 선택자가 두 번째 인자에 오게됨.
+            //$('.marked', '#active').css("background-color", "red");
+            // 위와 같다.
+            //$('#active .marked').css("background-color", "red");
+
+            //$('#active').find('.marked').css('background-color', 'red');
+            // find는 #active의 element집합 중에서 .marked만 조회.
+
+            $('#active').css('color', 'blue').find('.marked').css('background-color', 'red');

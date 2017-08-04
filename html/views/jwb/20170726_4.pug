@@ -1,0 +1,60 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+    body
+
+        //a(id = "anchor" href = "http://opentutorials.org" onclick="window.open('http://opentutorials.org', '_blank');") opentutorials
+        // 여기에 onclick 넣으면 동시에 새창에서 뜨면서도 self로 옮겨간다.
+        a(id = "anchor" href = "http://opentutorials.org") opentutorials
+        // target 속성
+
+        ul
+            li html
+            li css
+            li(id = "active") javascript
+            li(id = "list") javascript2
+        input(type="button" id="button" value="button")
+
+        script.
+            var li = document.getElementById('active');
+            console.log(li.constructor.name); // HTMLLIElement -> 하나만 리턴될 때는 이것으로 리턴된다.
+            // HTMLLIElement -> li 의 element.
+            var lis = document.getElementsByTagName('li');
+            console.log(lis.constructor.name); // HTMLCollection -> 복수개의 객체를 리턴할 때는 컬렉션으로 리턴된다.
+
+            var tgt = document.getElementById('list');
+            console.log(tgt.constructor.name); // HTMLLIElement
+
+            var tgt2 = document.getElementById('anchor');
+            console.log(tgt2.constructor.name); // HTMLAnchorElement
+
+            //interface HTMLAnchorElement : HTMLElement {
+            // attribute DOMString       accessKey;
+            // attribute DOMString       href; -> 이걸 변경할 수 있다.
+            // ...
+            // HTMLElement 를 상속 -> 부모 객체가 같으므로 부모 객체가 가지는 동일한 프로퍼티를 가진다.
+            //
+            //
+            // DOM -> document object model
+            // https://web.stanford.edu/class/cs98si/slides/the-document-object-model.html
+            // dom tree
+            //
+            //
+
+
+
+
+            var tgt3 = document.getElementById('button');
+            console.log(tgt3.constructor.name); // HTMLInputElement
+
+
+
+
+
+
+
+
+
+
+

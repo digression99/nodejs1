@@ -1,0 +1,59 @@
+//
+    lesson 65 - 문서의 기하학적 특성 - 뷰포트
+        -> 사용자에게 보여지는 영역이 뷰포트이고, 스크롤을 포함해서 바깥에 있는 문서가 실제 문서의 크기이다.
+
+    lesson 68 - event
+    -> 사용자가 클릭했을 때, 스크롤했을 때, 필드를 바꾸었을 때... -> event driven programming.
+
+doctype html
+html
+    head
+        meta(charset="utf-8")
+
+        style.
+            body {
+                padding: 0;
+                margin: 0;
+            }
+
+            div {
+                border: 50px solid #1065e6;
+                padding: 50px;
+                margin: 50px;
+            }
+
+            #target {
+                width: 100px;
+                height: 2000px;
+            }
+
+
+    body
+        div
+            div(id="target") coding
+
+        input(type="button" id="scrollBtn" value="scroll(0, 1000)")
+
+        script(src="/jwb/jquery-3.2.1.js")
+
+        script.
+            var t = document.getElementById('target');
+            setInterval(function () {
+                console.log('getBoundingClientRect : ', t.getBoundingClientRect().top, 'pageYOffset:', window.pageYOffset);
+            }, 1000)
+            //
+            // setInterval은 인터벌마다 호출한다.
+            // t.getBoundingClientRect().top 은 t의 y의 위치라고 할 수 있다.
+            // 즉 엘레먼트 target에서부터 viewport까지의 거리
+            // window.pageYOffset -> 문서의 최상단에서 뷰포트가 얼마나 내려왔는가.
+
+            document.getElementById('scrollBtn').addEventListener('click', function () {
+                window.scrollTo(0, 1000);
+            })
+            // 버튼으로 스크롤을 제어할 수 있다.
+
+            console.log('window.innerWidth:', window.innerWidth, 'window.innerHeight:', window.innerHeight);
+            // 뷰포트의 크기를 알아낼 수 있다.
+            console.log('screen.width:', screen.width, 'screen.height:', screen.height);
+            // 스크린의 크기를 알아낼 수 있다.
+

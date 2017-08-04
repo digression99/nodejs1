@@ -1,0 +1,19 @@
+//
+   Created by kimilsik on 6/6/17.
+doctype html
+html
+    head
+        // tag의 속성을 추가하려면 괄호로.
+        meta(charset='utf-8')
+    body
+        //form(action='/form_receiver')
+        //method 가 post이면 서버로 데이터가 전송된다 default is get
+        form(action='/form_receiver' method='post')
+            p
+                input(type='text' name='title')
+            p
+                textarea(name='description')
+            p
+                input(type='submit')
+
+

@@ -1,0 +1,39 @@
+//
+   Created by kimilsik on 6/14/17.
+doctype html
+html
+    head
+        meta(charset='utf-8')
+    body
+        // 대표 페이지로 이동하게
+        h1
+            a(href='/topic') Server side javascript
+        ul
+            each t in topics
+                li
+                    // @rid 는 여러 문제가 생길수도. 배열의 데이터를 얻는 것처럼.
+
+                    // # 은 url에 넣으면 문제가 생김
+                    - rid = encodeURIComponent(t['@rid']);
+                    //a(href='/topic/'+topic['@rid'])=topic.title
+                    a(href='/topic/'+rid)=t.title
+                    //a(href='/topic/'+topic)= topic
+        article
+            if top
+                h2= top.title
+                = top.description
+                div= 'by ' + top.author
+            else
+                h2 Welcome
+                | This is server side javascript tutorial.
+                // | 는 부모 태그 없이 텍스트를 찍을 수 있게 하는 것.
+        ul
+            li
+                a(href='/topic/add') add
+            if top
+                -rid = encodeURIComponent(top['@rid']);
+                li
+                    a(href='/topic/' + rid + '/edit') edit
+                li
+                    a(href='/topic/' + rid + '/delete') delete
+

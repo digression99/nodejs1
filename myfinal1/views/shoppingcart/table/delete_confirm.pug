@@ -1,0 +1,14 @@
+//Created by kimilsik on 7/12/17.
+doctype html
+html
+    head
+    body
+        p
+            style
+                einclude teststyle.css
+            h1 Are you really going to delete this?
+        form(action='/shoppingcart/table/' + rid + '/delete/', method='post')
+            input(type='submit')
+            | YES
+        p
+            a(href="/shoppingcart/table/main") NO

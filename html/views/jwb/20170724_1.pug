@@ -1,0 +1,108 @@
+//Created by kimilsik on 7/18/17.
+//lesson 1 - orientation
+//
+//javascript -> web browser, nodejs, google apps script 등을 제어할 수 있다
+//비유 -> 각각은 다른 전문직업이다. 자바스크립트는 기본적으로 한국어.
+//그러나 다른 각각의 것들은 전문 용어라고 할 수 있다.
+//
+//web browser -> client side..
+//
+//공부는 빠르게 실습은 느리게 하
+//가급적 빠르게 완주하고 전체적 이해를 바탕으로 각각의 실습을 다시 공부
+//하나하나 꼼꼼히 실습.
+//
+//lesson 2 -> javascript 란
+//
+//웹 브라우저와 웹 서버는 상호 보완적.
+//웹 서버에 html이 저장.
+//html -> 정보를 표현하는 언어.
+//css -> 정보를 꾸며주는 언어.
+//
+// 구글 크롬 개발자 도구 사용.
+// -> console 활용.
+//
+// javascript 파일을 별도로 빼놓으면, 그 파일을 캐시로 받아놔서 페이지에 부담을 덜 수 있다.
+// 외부 파일로 뺄 때는 body tag 가 끝나는 지점에 위치시키는 게 좋다.
+//
+
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        style.
+            #selected {
+                color : red;
+            }
+            .dark {
+                background : black;
+                color : white;
+            }
+            .dark #selected {
+            color: yellow;
+            }
+        script.
+            window.onload = function()
+            // onload -> 모든 로드가 끝난 다음에 함수가 호출된다.
+            {
+                var hw = document.getElementById('hw');
+                hw.addEventListener('click', function() {
+                    alert('hello world');
+                });
+            }
+            // javascript 를 inline으로 활용.
+    body
+        ul
+            li html
+            li css
+            li(id="selected") javascript
+
+        input(type="button" value="dark" onClick="document.body.className='dark';")
+        // body의 className 값으로 dark를 준다.
+        // javascript 를 통해 html을 제어한다. -> 정보를 제어.
+
+        //input(type="button" onClick="alert('hello world')" value="hello world")
+        // onClick 이라는 속성의 값은 javascript라는 약속이 되어 있다.
+        // onKeyDown, 등등..
+        // html 코드와 javascript 코드가 짬뽕 -> 불편. (정보 + 제어)
+
+        input(type="button" id="hw" value="hello world")
+        script.
+            var hw = document.getElementById('hw');
+            hw.addEventListener('click', function () {
+                alert('Hello world');
+            });
+        // 이 스크립트 코드가 실행될 때 id hw가 앞에 없으면 안된다..
+        // 즉 스크립트 코드가 올 수 있는 위치는 제한되어 있다.
+
+        input(type="button" id="hw2" value="hello world2")
+        //include 20170724_script.js
+        // include -> 그 코드 자체를 인클루드 하는 것.
+        //script(src="./20170724_script.js")
+
+        script(src="/jwb/20170724_script.js")
+            // 대박
+        //script(src="/views/jwb/20170724_script.js")
+        //head 에서 script를 만나면 바로 다운로드 해서 실행한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

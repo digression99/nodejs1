@@ -1,0 +1,36 @@
+//Created by kimilsik on 7/11/17.
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        title main page
+    body
+        nav
+            style
+                include nav_style.css
+            ul
+                li
+                    a(href="/shoppingcart/table/main") MAIN
+                li
+                    a(href="/shoppingcart/table/list1") LIST1
+                li
+                    a(href="/shoppingcart/table/list2") LIST2
+        block hdr
+        main
+            if message
+                p
+                    h1= message
+            if data
+                block datas
+            article
+            //block inner
+            // 다양한 데이터를 여기에 extends하게끔 해서 여기에 끼운다음에, 레이아웃 형식으로 출력한다.
+            each content in contents
+                li
+                    - rid = encodeURIComponent(content['@rid']);
+                    a(href='/shoppingcart/table/' + rid)= content.title
+            p
+                a(href='/shoppingcart/table/add') WRITE
+            p
+                a(href='/shoppingcart/logout') LOGOUT
+        block ftr

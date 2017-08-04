@@ -1,0 +1,137 @@
+//
+    youtube 총 재생시간 구하기
+
+    chrome console 에서 shift + enter -> 그냥 줄바꿈. 코드 이어서 작성 가능.
+
+    -100/3             // -33.33..., 0.3663 millisec
+    Math.floor(-100/3) // -34,       0.5016 millisec
+    ~~(-100/3)         // -33,       0.3619 millisec
+    (-100/3>>0)        // -33,       0.3632 millisec
+    (-100/3|0)         // -33,       0.3856 millisec
+    (-100-(-100%3))/3  // -33,       0.3591 millisec
+
+    /* a=-100, b=3 */
+    a/b                // -33.33..., 0.4863 millisec
+    Math.floor(a/b)    // -34,       0.6019 millisec
+    ~~(a/b)            // -33,       0.5148 millisec
+    (a/b>>0)           // -33,       0.5048 millisec
+    (a/b|0)            // -33,       0.5078 millisec
+    (a-(a%b))/b        // -33,       0.6649 millisec
+    The above is based on 10 million trials for each.
+
+    Conclusion: Use (a/b>>0) (or (~~(a/b)) or (a/b|0)) to achieve about 20% gain in efficiency.
+    Also keep in mind that they are all inconsistent with Math.floor, when a/b<0 && a%b!=0.
+
+    * ajax vs form submission
+    ajax는 일단 asynchronous 이므로
+    사용자가 제출을 했을 때 일이 다 끝날 때 까지는 페이지가 리로드되지 않는다.
+    반면에 form submission은 synchronous 하게 진행되므로 제출되고 일이 끝날때까지 페이지가 안보인다.
+
+    ajax -> 댓글 기능, 간단한 제출 등
+    form submission -> 사용자가 확실히 진행되고 있다고 느끼게끔 하게. 데이터베이스와 직접 접속하는
+    오래 진행되는 submission 등.
+
+    3
+    down vote
+    I think that the choice between the two is somewhat intrinsic:
+
+    a form submission is synchronous and it reloads the page.
+    an ajax call is asynchronous and it does not reload the page.
+    If a certain action will change a lot of UI elements or needs to poll a lot of data to be rendered,
+    I would go with form submission. On the other hand, if a certain action is used for simple actions,
+    like populating a select box or improving user experience, then I would go for an AJAX call.
+
+    There is nothing avoiding you to use as many ajax calls or form submissions as you need, so in the end is up to you.
+
+
+
+
+
+doctype html
+html
+    head
+        meta(charset="utf-8")
+    body
+        h1(style="color:red")
+        input(type="button" id="test" value = "button")
+
+        form(id="form-sub")
+            input(type="text" id="url")
+            input(type="submit")
+
+        script(src="/jwb/jquery-3.2.1.js")
+
+        script.
+
+            $('#test').click(function() {
+                $.get("https://www.youtube.com/playlist?list=PLuHgQVnccGMAE4Sn_SYvMw5-qEADJcU-X", function (response) {
+                    alert(response)
+                });
+                //$("#links").load("/Main_Page #jq-p-Getting-Started li");
+
+                //window.open('http://opentutorials.org', 'abc');
+            });
+
+            $('#execute').click(function () {
+                $.ajax({
+                    url: "http://localhost:3002/jwb/ajax2",
+                    type: "post",
+                    data: $('form').serialize(), // 서버쪽으로 전송할 데이터.
+                    success: function (data) {
+                        console.log('success data : ' + data);
+                        $('#time').text(data);
+                    }
+                });
+            });
+
+            $('#form-sub #url').on('submit', function(event) {
+                console.log('event submit called.');
+
+                var data = document.querySelectorAll('.pl-video .pl-video-time .timestamp span');
+
+                var totTime = 0;
+
+                for (var i = 0; i < data.length; ++i) {
+                    var times = data[i].innerText.split(":").map(function (dat) {
+                        return parseInt(dat);
+                    });
+                    var ofs = 1;
+
+                    for (var j = times.length - 1; j >= 0; --j) {
+                        totTime += ofs * times[j];
+                        ofs *= 60;
+                    }
+                }
+                var hrs = Math.floor(totTime / 3600);//totTime / 3600;
+                totTime -= hrs * 3600;
+                var mns = Math.floor(totTime / 60);
+                totTime -= mns * 60;
+
+
+                alert('총 재생 시간은 ' + hrs + ' 시간 ' + mns + ' 분 ' + totTime + ' 초 입니다.');
+            })
+
+            // youtube '동영상' 화면에서 총 재생시간 구하기.
+//
+//            var totTime = 0;
+//
+//            for (var i = 0; i < dat.length; ++i) {
+//                var str = dat[i].querySelector('span').innerText.split(':').map(function (dat) {
+//                    return parseInt(dat);
+//                });
+//                totTime += (str[0] * 60) + str[1];
+//            }
+//            console.log(totTime);
+//            var hrs = Math.floor(totTime / 3600);
+//            totTime -= hrs * 3600;
+//            var min = Math.floor(totTime / 60);
+//            totTime -= min * 60;
+//
+//            alert('총 재생 시간은 ' + hrs + '시간 ' + min + '분 ' + totTime + '초 입니다.');
+
+
+
+
+
+
+

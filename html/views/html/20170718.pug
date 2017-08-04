@@ -1,0 +1,47 @@
+//Created by kimilsik on 7/18/17.
+// doctype -> 어떤 방식의 html 방식으로 작성되었는지
+doctype html
+html
+    head
+        title kim il sik
+        meta(charset="utf-8")
+    body
+        h1 20170718 html study
+        // alt : alternative text
+        p
+            // -imgt = require('./imgtest.PNG');
+            img(src="/views/test2.jpg")
+            //img(src="./test2.jpg", width="200", height="300", alt="mountain", title="mountain")
+        p
+            img.image(src="./imgtest" width="200", height="300", alt="mountain", title="mountain")
+        table(border="2")
+            tr
+                td name
+                td sex
+                td address
+            tr
+                td choi
+                td male
+                td chong ju
+        table(border="2")
+            thead
+                tr
+                    th name
+                    th sex
+                    th address
+                    th money
+            tbody
+                tr
+                    td choi
+                    td male
+                    td(rowspan="2") choeng ju
+                    td 1000
+                tr
+                    td choi2
+                    td female
+                    td 1500
+            tfoot
+                tr
+                    td(colspan="3") total
+                    td 2500
+

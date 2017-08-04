@@ -1,0 +1,23 @@
+//Created by kimilsik on 7/11/17.
+doctype html
+html
+    head
+        if message
+            block error
+        else
+            h1 no message.
+    body
+        h1 REGISTER
+        form(action='/shoppingcart/register', method='post')
+            p
+                input(type='text', name='username', placeholder='username')
+            p
+                input(type='password', name='password', placeholder='password')
+            p
+                input(type='text', name='displayName', placeholder='displayName')
+            p
+                input(type='text', name='email', placeholder='e-mail')
+            p
+                input(type='submit')
+        p
+            a(href='/shoppingcart') MAIN

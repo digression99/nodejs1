@@ -1,0 +1,53 @@
+//Created by kimilsik on 7/25/17.
+// 다른 창과 상호작용하는 방법.
+    <!DOCTYPE html>
+    <html>
+    <body>
+        <input type="button" value="open" onclick="winopen();" />
+        <input type="text" onkeypress="winmessage(this.value)" />
+        <input type="button" value="close" onclick="winclose()" />
+        <script>
+        function winopen(){
+            win = window.open('demo2.html', 'ot', 'width=300px, height=500px');
+        }
+        function winmessage(msg){
+            win.document.getElementById('message').innerText=msg;
+        }
+        function winclose(){
+            win.close();
+        }
+        </script>
+    </body>
+    </html>
+
+//
+    보안
+    window.open('~')하면 팝업 차단이 뜬다.
+    즉, 사용자와의 인터렉션 없이 창을 여는 건 팝업이다.
+    같은 도메인의 사이트라면 원격으로 제어하는 것이 허용된다.
+    그러나 다른 도메인의 사이트면 open은 할 수 있으나
+    정보 변경은 할 수 없다.
+
+doctype html
+html
+    head
+        meta(charset="utf-8")
+    body
+        p
+            input(type="button" value="open" onclick="winopen();")
+        p
+            input(type="text" onkeypress="winmessage(this.value);")
+        p
+            input(type="button" value="close" onclick="winclose();")
+        script.
+            var winopen = function() {
+                win = window.open('/jwb/demo2.html', 'ot', 'width=300px, height=500px');
+            };
+            var winmessage = function(msg) {
+                win.document.getElementById('message').innerText=msg;
+                // innerText -> 새로 열어진 창에서의 다른 div의 id를 얻어서 그것의 내용을 msg로 바꿈.
+            };
+            var winclose = function() {
+                win.close();
+                // 새로운 창이 닫히면서 어떤 정보를 체크했는지 확인할 수 있다..
+            };

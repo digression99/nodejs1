@@ -1,0 +1,12 @@
+extends layout
+block content
+    article
+        h1= 'Delete ' + top.title + ' ?'
+        form(action='/topic/'+ top.id +'/delete', method='post')
+            // delete or update는 post로 하는 게 좋다
+            p
+                input(type='submit' value='yes')
+
+        a(href='/topic/'+ top.id) no
+            //p
+            //    input(type='submit' value='no') // no 는 get 방식으로 해도 된다

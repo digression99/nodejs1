@@ -1,0 +1,31 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+    body
+        form(action="/newform")
+            // 모바일 환경시 숫자 패드가 켜진다.
+            p
+                // autofocus -> 페이지를 켜자마자 포커스가 바로 가는 것.
+                // required -> 필수 옵션으로 지정.
+                // pattern -> 정규 표현식으로 지정. 어떤 패턴이 반드시 그 인풋 안에 있는지.
+                // reg exp -> . : 어떤 문자도 가능. +: 모든 문자가 하나 아니면 그 이상.
+                input(type="number" min="10" max="15" width="300" autofocus required
+                pattern="[a-zA-Z]")
+            p
+                input(type="range" min="0" max="100")
+            p
+                input(type="date" name="datev")
+            p
+                input(type="month" name="monthv")
+            p
+                input(type="week" name="weekv")
+            p
+                input(type="time" name="timev")
+            p
+                input(type="email" name="emailv")
+            // etc ->tel, url, search...
+
+            // 제출시 사용자의 제출을 제한할 수 있다.
+            p
+                input(type="submit")

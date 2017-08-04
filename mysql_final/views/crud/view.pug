@@ -1,0 +1,27 @@
+extends layout
+block content
+    article
+        if top
+            h2= top.title
+            = top.description
+            div= 'by ' + top.author
+        else
+            h2 Welcome
+            | This is server side javascript tutorial.
+            // |(pipe) 는 부모 태그 없이 텍스트를 찍을 수 있게 하는 것.
+    ul
+        li
+            a(href='/topic/add') add
+        if top
+            li
+                a(href='/topic/' + top.id + '/edit') edit
+            li
+                a(href='/topic/' + top.id + '/delete') delete
+
+        //if top
+            //-rid = encodeURIComponent(top['@rid']);
+        //    li
+                //a(href='/topic/' + rid + '/edit') edit
+        //    li
+                //a(href='/topic/' + rid + '/delete') delete
+

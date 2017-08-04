@@ -1,0 +1,84 @@
+//Created by kimilsik on 7/18/17.
+// lesson 30 : meta data -> 그 페이지를 설명하는 것.
+//
+//
+// lesson 31 : semantic
+// sematic tag -> 하단인지 본문인지 등을 명확히 표시해주는 태그.
+//
+// header -> 가장 중요한 정보들.
+// footer -> semantic tag. 하단에 보여줄 것들. 개인보호정책, 회사 소개 등.
+// nav -> contents들을 탐색할 수 있게 하는 것들.
+// article -> 본문. 본문이 여러개면 여러개 써도 됨..
+// section -> article 을 여러개 묶음. 역할이 애매.
+//
+// 검색엔진 최적화 -> 의미론적으로 html을 잘 작성해야.
+// title tag > li tag -> 주요 정보, 페이지 제목 등은 title tag..
+//
+// url 에 적합한 정보를 담게끔 설계. -> 불필요한 매개변수, 세션 id는 담지 말자..
+// 너무 깊게 중첩된 디렉토리 사용하지 말자.
+// 같은 컨텐츠가 여러개의 주소를 가지게 하지 말자.
+// 301 redirection
+// link rel="canonical" href="~"
+//    down vote
+//    accepted
+//    Attributes are not the same as the tag they are in.
+//
+//    <link /> is an empty element, i.e. it can not have anything inside of it. All it does is specify a relationship with another document. Additionally, the <link> tag is only used in the <head> section.
+//
+//    <a></a> on the other hand, is not an empty element and specifies an object to be created on the page - like a clickable link or image - which takes the user to some other location. This tag is only used in the <body> section.
+//
+//    So, even though the tags can have the same attributes, that does not mean they do the same thing.
+//
+// url의 일부를 지우고 접속하는 경우, 적절치 않다면 오류를 보내는 대신 상위 디렉토리로 이동하도록 만들라.
+// 사이트의 이동은 하이퍼텍스트를 이용하는 게 좋다.
+// 앵커텍스트 -> 어떤 정보인지를 알려줘라.
+// img -> alt를 사용하면 정보를 더 확실히 알려줄 수 있다.
+//         -> images/ 아래에 넣으면 좋다.
+//          -> 파일의 이름을 의미를 부여하라.
+//
+// robots.txt -> 어떤 페이지를 제어할지 설정할 수 있다
+//
+// 사이트맵 -> 사용자가 다양한 페이지를 한꺼번에 이동하기 쉽게 해 놓은 것.
+// xml로 작성해놓으면 크롤러가 더 쉽게 이해할 수 있다.
+//
+// page rank -> page 마다 순위를 매김
+// 많은 사이트에서 링크하고 있다면 순위가 높아짐.
+// 또한 순위가 높은 사이트가 내 사이트를 링크한다면 순위가 높아짐.
+//
+// - 웹 개발자 도구
+// 해당 위치에 오른쪽 클릭, 검사를 누르면
+// 해당되는 위치의 html소스, css소스 볼 수 있다.
+// -> 크롬 개발자 도구 수업 꼭 보기.
+//
+//
+//
+//
+//
+//
+
+
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        meta(name="description" content="introduction")
+        meta(name="keywords" content="lala, baba")
+        meta(name="author" content="kim")
+        meta(http-equiv="refresh" content="30")
+    body
+        header
+            h1 이 페이지는 30초마다 리프레쉬가 된다.
+            | 메타에 여러 다른 정보가 들어갈 수 있다
+            | 그 정보들은 웹페이지를 분류하는 알고리즘이 사용한다.
+        article
+            div my mom is crazy.
+            style
+                include test.css
+            a(href="/upload") upload files!
+
+        footer
+            h3 company policy
+
+
+
+

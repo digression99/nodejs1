@@ -1,0 +1,22 @@
+//
+    jQuery with CDN -> Contents delivery network
+
+    $('li').css('color', 'red');
+    여기서 $는 jquery function. 이를 호출하면 jQuery 객체가 리턴.
+    그 객체의 함수 중 css 메소드를 호출 -> li의 모든 엘리먼트들의 스타일을 바꿈.
+
+doctype html
+html
+    head
+        meta(charset="utf-8")
+    body
+        script(src="/jwb/jquery-3.2.1.js")
+        script.
+            jQuery(document).ready(function ($) {
+                $('body').prepend('<h1> hello world </h1>');
+            });
+
+        //script(src="//code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous").
+            jQuery(document).ready(function($){
+            $('body').prepend('<h1> hello world </h1>');
+            });

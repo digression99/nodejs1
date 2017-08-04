@@ -1,0 +1,154 @@
+//
+    google image search -> images.google.com
+    lesson 4 - 선택자와 선언
+
+    h1 {color : red;}
+    h1 -> selector
+    ; -> declaration separator
+    : -> value-property separator
+
+    selector 의 우선순위
+
+    id > class > tag(type selector)
+
+    부모자식선택자 -> ul li 같이 스페이스로 구분한다.
+
+    #lecture>li -> #lecture 의 바로 밑에 있는 li에 대해서.
+    왜 근데 이게 #target 보다 우선순위가 높을까??
+
+    두개 같이 주기 -> ul, ol { color : red;}
+
+    ---- 가상 클래스 선택자 (pseudo class selector)
+    a:active -> a태그가 active 상태일 때의 클래스를 선택.
+
+    ** css 도 마찬가지로 위치에 따라 우선순위가 있다.
+    먼저 적용되어야 하는 것을 위에 두어야 한다.
+
+    ** tag + class -> li.small -> li 태그 중 small 클래스를 가진 것.
+
+    ** * (asterisk) -> 모든 태그를 가리키는 유니버설 선택자.
+    -> plate *
+
+    ** plate+apple -> plate에 인접한 apple. apple만 선택된다.
+
+    ** bento~pickle -> bento에 인접해 있는 모든 pickle. bento+pickle은 pickle 하나만.
+
+    ** plate orange:first-child -> plate 밑의 orange 중 첫 번째 child만 선택.
+
+    ** *:only-child -> 모든 태그들 중 자식이 하나만 있는 것들.
+
+    ** .small:last-child -> small class 중 last-child인 것들만 선택.
+
+    ** plate:nth-child(3) -> 3번째 child.
+
+    ** apple:nth-of-type(1) -> n번째 등장하는 type을 선택한다.
+    first-of-type
+
+    ** nth-of-type(odd) or nth-of-type(even)
+    ** nth-of-type(3n+2)
+    ** apple:only-of-type -> 타입이 자기자신밖에 없는 것만 선택.
+
+    ** bento:empty -> 텅빈 태그만 선택.
+
+    ** div:not(:first-child) -> first-child가 아닌 모든 div선택.
+
+
+
+
+
+
+
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        style.
+            /*li {
+                color : red;
+                text-decoration : underline;
+            }
+            #select
+            {
+                font-size : 50px;
+                color : beige;
+            }
+            .a {
+                color : green;
+                font-size : 30px;
+            }
+            #b {
+                color : aqua;
+                font-size : 100px;
+                text-decoration : line-through;
+            }*/
+
+
+
+            ul {
+                background-color : powderblue;
+            }
+
+            ul li {
+                color : cyan;
+                border : 1px solid red;
+            }
+
+            #lecture>li {
+                color : green;
+            }
+            #target {
+                color : red;
+            }
+            a:link {
+                color : black;
+            }
+            a:visited {
+                color : red;
+            }
+            a:hover {
+                color : yellow;
+            }
+            a:active {
+                color : black;
+            }
+            a:focus {
+                color : aqua;
+            }
+            /* 포커스는 마지막에 주는것이 좋다.*/
+            input:focus{
+                background-color : black;
+                color : white;
+            }
+
+
+
+    body
+        input(type="text")
+
+        h1 hello world
+
+        ul
+            li#b.a html
+            li#select.a css
+            li.a javascript
+
+        ul
+            li html2
+            li css2
+            li javascript2
+
+        ol#lecture
+            li#target html3
+            li css3
+                ol
+                    li selector
+                    li decoration
+            li javascript3
+
+        a(href="http://opentutorials.org") visited
+        a(href="http://a.a") not visited
+
+        script(src="/css/jquery-3.2.1.js")
+
+        script.
+

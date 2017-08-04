@@ -1,0 +1,69 @@
+//
+    lesson 72 - event 전파
+
+    html, body, fieldset, input에 각각 event 장착했을 때,
+    html, body, fieldset, input 순으로 이벤트 호출 -> capturing
+    input, fieldset, body, html 순 -> bubbling
+    둘다 지원한다.
+
+
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        style.
+            html {border:5px solid red; padding:30px;}
+            body{border:5px solid green; padding:30px;}
+            fieldset{border:5px solid blue; padding : 30px;}
+            input{border:5px solid black; padding:30px;}
+body
+    fieldset
+        legend event propagation
+        input(type="button" id="target" value="target")
+
+        script(src="/jwb/jquery-3.2.1.js")
+
+        script.
+            function handler(event) {
+                var phases = ['capturing', 'target', 'bubbling'];
+                console.log(event.target.nodeName, this.nodeName, phases[event.eventPhase - 1]);
+                // this.nodeName -> 현재 클릭이 일어난 event target이다.
+                // event.target.nodeName -> event를 일어나게 한 당사자.
+                // event.eventPhase -> 현재 event handler가 호춛될 때 bubbling -> 3, capturing -> 1, target -> 2 로 된다.
+            }
+            function stopHandler(event) {
+                var phases = ['capturing', 'target', 'bubbling'];
+                console.log(event.target.nodeName, this.nodeName, phases[event.eventPhase - 1]);
+                event.stopPropagation();
+            };
+
+
+            // capturing
+            // 잘 안쓴다. 옛 브라우저에서 지원하지 않기 때문에.
+            //document.getElementById('target').addEventListener('click', handler, true);
+            //document.querySelector('fieldset').addEventListener('click', handler, true);
+            //document.querySelector('body').addEventListener('click', handler, true);
+            //document.querySelector('html').addEventListener('click', handler, true);
+
+            // bubbling -> 마지막 인자가 false. ==> use capturing 을 false.
+            document.getElementById('target').addEventListener('click', handler, false);
+            document.querySelector('fieldset').addEventListener('click', handler, false);
+            document.querySelector('body').addEventListener('click', stopHandler, false);
+            document.querySelector('html').addEventListener('click', handler, false);
+            // stopHandler를 body에 넣음 -> body에서 html까지는 안간다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,13 @@
+//Created by kimilsik on 7/18/17.
+doctype html
+html
+    head
+        meta(charset="utf-8")
+    body
+        // multipart/form-data -> 아무런 것도 인코딩하지 않는다. 주로 파일 업로드 컨트롤에서 사용.
+        form(action="/upload" method="post" enctype="multipart/form-data")
+            p
+                input(type="file" name="filename")
+            p
+                input(type="submit" value="file upload")
+

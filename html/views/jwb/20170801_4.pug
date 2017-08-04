@@ -1,0 +1,83 @@
+//
+    json - javascript object notation
+    var person = {"height":174, "job":"programmer"}
+    or
+    var members = ["egoing", "kdfsd", "sdfsd"]
+    -> 배열
+
+    var info = '{\
+    "f1" : "11", \
+    "f2" : "f234", \
+    "sdfsdf" : "!23"\
+    }'
+
+    var infoobj = JSON.parse(info);
+    -> infoobj는 json을 파싱한 오브젝트가 된다.
+
+    var infostr = JSON.stringify(infoobj);
+    -> json format 으로 변경.(위와 비슷)
+
+    ---- jQuery ajax
+
+    $.ajax([setting]) 으로 사용.
+    setting :
+    data - 서버로 데이터를 전송할 때 사용.
+    dataType - 서버측에서 전송할 데이터가 어떤 타입인지. 지정 안하면 알아서 판단.
+    success - 성공했을 때 호출할 콜백을 지정.
+    type - 데이터를 전송하는 방법을 지정. // get, post.
+
+// jquery 방식.
+//doctype html
+//html
+//    head
+//        link(rel='stylesheet', href='/stylesheets/style.css')
+//        script(src="/jwb/jquery-3.2.1.js")
+//    body
+//        input#msg(type='text')
+//        input#ajax_test(type='button', value='ajax_test')
+//        div(id="result")
+//        script.
+//            $('#ajax_test').click( function() {
+//                $('#result').html('');
+//                $.ajax({
+//                    url: 'http://localhost:3002/jwb/ajax1',
+//                    dataType: 'json',
+//                    type: 'POST',
+//                    data: {'msg':$('#msg').val()},
+//                    success: function(result) {
+//                        if ( result['result'] == true ) {
+//                            $('#result').html(result['msg']);
+//                        }
+//                    }
+//                });
+//            })
+
+doctype html
+html
+    head
+    body
+        p#time
+
+        form
+            select(name="timezone")
+                option(value="asia/seoul") asia/seoul
+                option(value="america/newyork") america/newyork
+            select(name="format")
+                option(value="y-m-d h:i:s") y-m-d h:i:s
+                option(value="y-m-d") y-m-d
+        input#execute(type="button" value="execute")
+
+        script(src="/jwb/jquery-3.2.1.js")
+
+        script.
+            $('#execute').click(function() {
+                $.ajax({
+                    url : "http://localhost:3002/jwb/ajax2",
+                    type : "post",
+                    data : $('form').serialize(), // 서버쪽으로 전송할 데이터.
+                    success : function (data) {
+                        console.log('success data : '+data);
+                        $('#time').text(data);
+                    }
+                });
+            });

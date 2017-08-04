@@ -1,0 +1,32 @@
+p
+    | time :
+    span#time
+select#timezone
+    option(value='Asia/Seoul') asia/seoul
+    option(value='America/New_York') America/New_York
+select#format
+    option(value='Y-m-d H:i:s') Y-m-d H:i:s
+    option(value='Y-m-d') Y-m-d
+input#execute(type='button', value='execute')
+script.
+    document.querySelector('input').addEventListener('click', function(event){
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', './time2.php');
+        xhr.onreadystatechange = function(){
+            document.querySelector('#time').innerHTML = xhr.responseText;
+        }
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        // 전송하는 데이터의 타입을 전송해야 한다.
+        var data = '';
+        data += 'timezone='+document.getElementById('timezone').value;
+        data += '&format='+document.getElementById('format').value;
+        xhr.send(data);
+        // 형식에 맞게. = 는 값, & 는 값과 값 사이.
+    });
+
+// php code
+//    <?php
+//    $d1 = new DateTime;
+//    $d1->setTimezone(new DateTimezone($_POST['timezone']));
+//    echo $d1->format($_POST['format']);
+//    ?>
